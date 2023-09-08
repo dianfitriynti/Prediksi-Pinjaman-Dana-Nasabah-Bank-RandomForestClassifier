@@ -1,0 +1,128 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Muhamad Nauval Azhar">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="description" content="This is a login page template based on Bootstrap 5">
+	<title>Customer Fund Loan Prediction Application</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+
+<body>
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-sm-center h-100">
+				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+					<div class="card shadow-lg">
+						<div class="card-body p-5">
+							<h1 class="fs-4 card-title fw-bold mb-4">Loan Prediction</h1>
+							<form action="\get_prediction" method="POST" class="needs-validation" novalidate="" autocomplete="off">
+								<div class="mb-3">
+									<label class="mb-2 text-muted" for="email">Account Number</label>
+									<input type="number" id="norek" name="norek" placeholder="Account Number" class="form-control" required/>
+								</div>
+								<div class="mb-3">
+									<label class="mb-2 text-muted" for="email">Account Name</label>
+									<input type="text" id="name" name="name" placeholder="Account Number" class="form-control" required/>
+								</div>
+								<div class="mb-3">
+									<label class="mb-2 text-muted" for="email">Your Age</label>
+									<input type="number" id="umur" name="umur" min="21" max="56" placeholder="Between 21-56" class="form-control" style="width:200px;" required/>
+								</div>
+								<div class="mb-3">
+									<label class="mb-2 text-muted" for="email">Sex</label>
+									<select id="sex" class="form-select" aria-label="Default select example" name="sex" required>
+                                        <option selected>--Please Select--</option>
+                                        <option value="1">Male</option>
+                                        <option value="0">Female</option>
+									</select>
+								</div>
+								<div class="mb-3">
+									<label class="mb-2 text-muted" for="email">Select Your Job</label>
+									<select id="pekerjaan" class="form-select" aria-label="Default select example" name="pekerjaan" required>
+                                        <option selected>--Please Select--</option>
+                                        <option value="1">ASN/Honorer/BUMN</option>
+                                        <option value="2">Bidang Arsitektur</option>
+                                        <option value="3">Bidang Ekonomi (Akuntan, Keuangan, Marketing, Pasar, Bisnis, Manajemen)</option>
+										<option value="4">Bidang F-B (Koki, Barista)</option>
+										<option value="5">Bidang Hukum</option>
+										<option value="6">Bidang IT (Programmer, Data, Editor, Desainer, Grafis, Fotografer, Game)</option>
+                                        <option value="7">Dokter (Gigi, Kulit, Syaraf, Anak, Hewan, dll)</option>
+                                        <option value="8">Entertainer</option>
+										<option value="9">Jurnalis/Wartawan</option>
+										<option value="10">Karyawan Swasta</option>
+										<option value="11">Konsultan</option>
+                                        <option value="12">Pendidik</option>
+                                        <option value="13">Penerbangan (Pilot/Pramugara/Pramugari)</option>
+										<option value="14">Scientist (Fisika, Kimia, Biologi, Insinyur, Geolog)</option>
+										<option value="15">Tenaga Kesehatan</option>
+										<option value="16">Wirausaha</option>
+									</select>
+								</div>
+
+								<div class="mb-3">
+									<label class="mb-2 text-muted" for="email">Loan Ammount</label>
+									<input type="text" id="peminjaman" name="peminjaman" class="form-control" min="1000000" 
+										max="1000000000" style="width:250px;" 
+										placeholder="1.000.000 - 1.000.000.000" required/>
+									<input type="text" name="currency-field" id="currency-field" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder="$1,000,000.00">
+								</div>
+		
+								<div class="d-flex align-items-center">
+										<button type="submit" align="center" class="btn btn-success ms-auto">
+											Check Avalibility
+										</button>
+								</div>
+							</form>
+                            <div class="text-center mt-5 text-muted">
+                               <h3>{{ prediction_text }}<h3>
+                            </div>
+                            <div class="text-center mt-5 text-muted">
+                               <button type="submit" align="center" class="btn btn-info ms-auto">
+											Save
+										</button>
+                            </div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="js/login.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+	/* Dengan Rupiah */
+    var dengan_rupiah = document.getElementById('peminjaman');
+    dengan_rupiah.addEventListener('keyup', function(e)
+    {
+        dengan_rupiah.value = formatRupiah(this.value, 'Rp, ');
+    });
+    
+    /* Fungsi */
+    function formatRupiah(angka, prefix)
+    {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split    = number_string.split(','),
+            sisa     = split[0].length % 3,
+            rupiah     = split[0].substr(0, sisa),
+            ribuan     = split[0].substr(sisa).match(/\d{3}/gi);
+            
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+        
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp, ' + rupiah : '');
+    }
+</script>
+{% endblock %}

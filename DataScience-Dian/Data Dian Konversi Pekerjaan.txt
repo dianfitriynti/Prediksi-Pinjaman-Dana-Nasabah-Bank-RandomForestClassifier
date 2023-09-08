@@ -1,0 +1,34 @@
+Kolom Diterima (1 Ya, 0 Ditolak)
+
+Kolom JK (1 Laki-Laki, 0 Perempuan)
+
+Kolom Pekerjaan
+1 ASN/Honorer/BUMN
+2 Bidang Arsitektur
+3 Bidang Ekonomi (Akuntan, Keuangan, Marketing, Pasar, Bisnis, Manajemen)
+4 Bidang F&B (Koki, Barista)
+5 Bidang Hukum
+6 Bidang IT (Programmer, Data, Editor, Desainer, Grafis, Fotografer, Game)
+7 Dokter (Gigi, Kulit, Syaraf, Anak, Hewan, dll)
+8 Entertainer
+9 Jurnalis/Wartawan
+10 Karyawan Swasta
+11 Konsultan
+12 Pendidik
+13 Penerbangan (Pilot/Pramugara/Pramugari)
+14 Scientist (Fisika, Kimia, Biologi, Insinyur, Geolog)
+15 Tenaga Kesehatan
+16 Wirausaha
+
+Kolom Kategori Pinjaman
+1 (1000000-10000000)
+2 (10000001-50000000)
+3 (50000001-100000000)
+4 (100000001-200000000)
+5 (200000001-300000000)
+6 (300000001-400000000)
+7 (400000001-500000000)
+8 (500000001-750000000)
+9 (750000001-1000000000)
+
+Kolom Diterima (1 ACCEPTED, 0 REJECTED)

@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<html>
+<head>
+   <title>Customer Fund Loan Prediction Application</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+</head>
+<body>
+   <div class="container"><br/>
+   <h2>Customer Fund Loan Prediction Application</h2>
+   <table class="table table-bordered table-hover">
+      <thead>
+      <tr>
+          <th>ID</th>
+          <th>Acc. Number</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Sex</th>
+          <th>Job</th>
+          <th>Pinjaman</th>
+          <th>Status</th>
+          <th width="10%" colspan="2">Aksi</th>
+      </tr>
+      </thead>
+   
+          <tbody>
+            {% for row in container %}
+            <tr>
+               <td>{{ row[0] }}</td>
+               <td>{{ row[1] }}</td>
+               <td>{{ row[2] }}</td>
+               <td>{{ row[3] }}</td>
+               <td>{{ row[4] }}</td>
+               <td>{{ row[5] }}</td>
+               <td>{{ row[6] }}</td>
+               <td>{{ row[7] }}</td>
+               <td><a href="http://localhost:5000/edit/{{row[0]}}" class="btn btn-warning" role="button">Ubah</a></td>
+               <td><a href="http://localhost:5000/hapus/{{row[0]}}" class="btn btn-danger" role="button">Hapus</a></td>
+            </tr>
+         {% endfor %}
+          </tbody>
+   </table>
+   <a href="http://localhost:5000/tambah" class="btn btn-primary" role="button">Add Data</a>
+   </div>
+</body>
+</html>
+{% endblock %}
